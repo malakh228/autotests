@@ -3,8 +3,8 @@ name: Run autotests
 on:
   workflow_dispatch:
     inputs:
-      deployment_target:
-        description: Select tests to run
+      test_type:
+        description: 'Select tests to run'
         required: true
         type: choice
         default: all
@@ -18,16 +18,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Tests
     steps:
-      - name: Copy source code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python env
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install --upgrade pip
+          pip install pytest
+          pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest -v
+        run: |
+          pytest -v

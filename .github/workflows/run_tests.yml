@@ -13,17 +13,17 @@ on:
 
 jobs:
     run-tests:
-      runs on: ubuntu-latest
-      name: tests
+      runs-on: ubuntu-latest
+      name: Tests
       steps:
-        - name: copy source code
+        - name: Copy source code
           uses: actions/checkout@v4
         - name: Set up python env
           uses: actions/setup-python@v5
           with:
               python-version: "3.10"
         - name: install dependencies
-        run pip install -r requirements.txt
+        run: pip install -r requirements.txt
         -nems: Run tests
         run: pytest -v
 

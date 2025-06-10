@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       test_type:
-        description: 'Select tests to run'
+        description: Select tests to run
         required: true
         type: choice
         default: all
@@ -26,11 +26,13 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install dependencies
+      - name: Install pytest and dependencies
         run: |
           pip install --upgrade pip
           pip install pytest
-          pip install -r requirements.txt
+          pip install selenium
+          pip install requests  # если используется
+          pip install allure-pytest  # для Allure, если нужно
 
       - name: Run tests
         run: |

@@ -9,7 +9,7 @@ on:
        type: choice
        default: all
        options:
-       -all
+       - all
 
 jobs:
     run-tests:
